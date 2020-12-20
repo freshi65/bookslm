@@ -1,0 +1,9 @@
+#catalog {
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+}
+.book {
+  margin-bottom: 2em;
+  margin-top: 2em;
+}

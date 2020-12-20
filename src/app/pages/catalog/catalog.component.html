@@ -1,0 +1,74 @@
+<div id="catalog">
+  <h1>Catalog</h1>
+  <h2>My books | {{ myBooks?.length }}/3</h2>
+  <div *ngFor="let book of myBooks" class="book">
+    <mat-card>
+      <mat-card-title>{{ book.title }}</mat-card-title>
+      <mat-card-subtitle>{{ book.author }} </mat-card-subtitle>
+      <mat-card-subtitle
+        >{{ book.publisher }} - {{ book.published }}</mat-card-subtitle
+      >
+
+      <mat-card-actions>
+        <button mat-raised-button (click)="return(book.title)">Return</button>
+        <button
+          *ngIf="isLibrarian"
+          mat-raised-button
+          color="warn"
+          (click)="delete(book.title)"
+        >
+          delete
+        </button>
+      </mat-card-actions>
+    </mat-card>
+    <br />
+  </div>
+  <h2>All books</h2>
+  <button
+    *ngIf="isLibrarian"
+    mat-raised-button
+    color="primary"
+    routerLink="/newBook"
+  >
+    Add book
+  </button>
+  <div *ngFor="let book of books" class="book">
+    <mat-card>
+      <mat-card-title>{{ book.title }}</mat-card-title>
+      <mat-card-subtitle
+        >{{ book.author }}
+        {{
+          book.borrowed
+            ? "| borrowed by " +
+              book.borrowedBy +
+              " | borrowed since: " +
+              book.borrowDate
+            : ""
+        }}</mat-card-subtitle
+      >
+      <mat-card-subtitle
+        >{{ book.publisher }} - {{ book.published }}</mat-card-subtitle
+      >
+
+      <mat-card-actions>
+        <button
+          disabled="{{ book.borrowed || maxBorrow ? true : false }}"
+          mat-raised-button
+          (click)="borrow(book.title)"
+        >
+          {{ book.borrowed ? "borrowed" : "borrow" }}
+        </button>
+
+        <button
+          *ngIf="isLibrarian"
+          mat-raised-button
+          color="warn"
+          (click)="delete(book.title)"
+        >
+          delete
+        </button>
+      </mat-card-actions>
+    </mat-card>
+    <br />
+  </div>
+</div>

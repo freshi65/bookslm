@@ -1,0 +1,58 @@
+<div id="newBook">
+  <h1>Add a book</h1>
+  <button mat-button color="primary" routerLink="/catalog">Back</button>
+  <form class="login-Form" (ngSubmit)="onSubmit()" ngNativeValidate>
+    <div>
+      <mat-form-field class="input">
+        <mat-label>Title</mat-label>
+        <input
+          required
+          matInput
+          placeholder="Title"
+          [(ngModel)]="bookData.title"
+          name="title"
+        />
+      </mat-form-field>
+      <span *ngIf="error" style="color: red">{{ error }}</span>
+    </div>
+    <div>
+      <mat-form-field class="input">
+        <mat-label>Author</mat-label>
+        <input
+          required
+          matInput
+          placeholder="Author"
+          [(ngModel)]="bookData.author"
+          name="author"
+        />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="input">
+        <mat-label>Publisher</mat-label>
+        <input
+          required
+          matInput
+          placeholder="Publisher"
+          [(ngModel)]="bookData.publisher"
+          name="publisher"
+        />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="input">
+        <mat-label>Published</mat-label>
+        <input
+          matInput
+          type="date"
+          required
+          placeholder="Published"
+          [(ngModel)]="bookData.published"
+          name="date"
+        />
+      </mat-form-field>
+    </div>
+
+    <button mat-raised-button color="primary">Add book</button>
+  </form>
+</div>
